@@ -26,8 +26,10 @@ public class LinkedList {
   public ListNode placeNode(String value, ListNode node) {
     if (node.getValue().compareTo(value) > 0) {
       placeNode(value, node.getNext());
+    } else {
+      node = new ListNode(value, node);
     }
-    node = new ListNode(value, node);
+    
     return node;
   }
 
@@ -40,9 +42,11 @@ public class LinkedList {
   public ListNode removeNode(String value, ListNode node) {
     ListNode next = node.getNext();
     if (node.getValue() == value) {
+      node = new ListNode(next.getValue(), next);
+    } else {
       removeNode(value, next);
     }
-    node = new ListNode(next.getValue(), next);
+    
     return node;
   }
 
